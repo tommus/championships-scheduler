@@ -1,0 +1,28 @@
+# python cache
+*.py[oc]
+__pycache__/
+
+# IDE files
+.idea/
+tmp/
+atlassian-ide-plugin.xml
+
+# coverage results
+.coverage
+htmlcov/
+
+# project specific
+lsr/webclient/static/bower_components
+photos/*
+static/*
+
+# virtualenv
+.venv/
+venv/
+
+# localization
+*.mo
+
+# os specific
+.DS_Store
+
