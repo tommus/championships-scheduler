@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-23 11:40+0200\n"
+"POT-Creation-Date: 2016-09-23 23:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Tomasz Dzieniak <tomasz.dzieniak@to-dev.com>\n"
 "Language-Team: to-dev.com <tomasz.dzieniak@to-dev.com>\n"
@@ -24,7 +24,7 @@ msgid "Championship"
 msgstr "Mistrzostwa"
 
 #: csa/championship/models.py:7 csa/championship/models.py:30
-#: csa/schedule/models.py:39
+#: csa/schedule/models.py:41
 msgid "name"
 msgstr "nazwa"
 
@@ -40,7 +40,7 @@ msgstr "Zespoły"
 msgid "player"
 msgstr "gracz"
 
-#: csa/championship/models.py:19 csa/schedule/models.py:50
+#: csa/championship/models.py:19 csa/schedule/models.py:52
 msgid "team"
 msgstr "zespół"
 
@@ -74,9 +74,11 @@ msgstr "Mistrzostwa"
 msgid "Schedule"
 msgstr "Kalendarz"
 
-#: csa/schedule/models.py:8
-msgid "match"
-msgstr "mecz"
+#: csa/schedule/models.py:8 csa/schedule/models.py:40
+#, fuzzy
+#| msgid "Championship"
+msgid "championship"
+msgstr "Mistrzostwa"
 
 #: csa/schedule/models.py:12
 msgid "first_team"
@@ -102,63 +104,57 @@ msgstr "bramki pierwszego zespołu"
 msgid "second_team_goals"
 msgstr "bramki drugiego zespołu"
 
-#: csa/schedule/models.py:33
+#: csa/schedule/models.py:35
 msgid "Match"
 msgstr "Mecz"
 
-#: csa/schedule/models.py:34
+#: csa/schedule/models.py:36
 msgid "Matches"
 msgstr "Mecze"
 
-#: csa/schedule/models.py:38
-#, fuzzy
-#| msgid "Championship"
-msgid "championship"
-msgstr "Mistrzostwa"
-
-#: csa/schedule/models.py:45
+#: csa/schedule/models.py:47
 #, fuzzy
 #| msgid "groups"
 msgid "Group"
 msgstr "grupy"
 
-#: csa/schedule/models.py:46
+#: csa/schedule/models.py:48
 #, fuzzy
 #| msgid "groups"
 msgid "Groups"
 msgstr "grupy"
 
-#: csa/schedule/models.py:51
+#: csa/schedule/models.py:53
 #, fuzzy
 #| msgid "groups"
 msgid "group"
 msgstr "grupy"
 
-#: csa/schedule/models.py:52
+#: csa/schedule/models.py:54
 msgid "won"
 msgstr "wygranych"
 
-#: csa/schedule/models.py:53
+#: csa/schedule/models.py:55
 msgid "drawn"
 msgstr "zremisowanych"
 
-#: csa/schedule/models.py:54
+#: csa/schedule/models.py:56
 msgid "lost"
 msgstr "przegranych"
 
-#: csa/schedule/models.py:55
+#: csa/schedule/models.py:57
 msgid "goals_scored"
 msgstr "strzelonych bramek"
 
-#: csa/schedule/models.py:56
+#: csa/schedule/models.py:58
 msgid "goals_lost"
 msgstr "straconych bramek"
 
-#: csa/schedule/models.py:62
+#: csa/schedule/models.py:64
 msgid "Result"
 msgstr "Wynik"
 
-#: csa/schedule/models.py:63
+#: csa/schedule/models.py:65
 msgid "Results"
 msgstr "Wyniki"
 
@@ -168,66 +164,63 @@ msgstr "Wiadomości"
 
 #: venv/lib/python3.5/site-packages/django/contrib/sitemaps/apps.py:7
 msgid "Site Maps"
-msgstr "Mapa strony"
+msgstr ""
 
 #: venv/lib/python3.5/site-packages/django/contrib/staticfiles/apps.py:7
 msgid "Static Files"
-msgstr "Pliki statyczne"
+msgstr ""
 
 #: venv/lib/python3.5/site-packages/django/contrib/syndication/apps.py:7
 msgid "Syndication"
-msgstr "Konsorcjum"
+msgstr ""
 
 #: venv/lib/python3.5/site-packages/django/core/validators.py:33
 msgid "Enter a valid value."
-msgstr "Wprowadź poprawną wartość."
+msgstr ""
 
 #: venv/lib/python3.5/site-packages/django/core/validators.py:106
 #: venv/lib/python3.5/site-packages/django/forms/fields.py:663
 msgid "Enter a valid URL."
-msgstr "Wprowadź poprawny adres URL."
+msgstr ""
 
 #: venv/lib/python3.5/site-packages/django/core/validators.py:159
 msgid "Enter a valid integer."
-msgstr "Wprowadź poprawną wartość całkowitą."
+msgstr ""
 
 #: venv/lib/python3.5/site-packages/django/core/validators.py:170
 msgid "Enter a valid email address."
-msgstr "Wprowadź poprawny adres email."
+msgstr ""
 
 #: venv/lib/python3.5/site-packages/django/core/validators.py:243
 msgid ""
 "Enter a valid 'slug' consisting of letters, numbers, underscores or hyphens."
 msgstr ""
-"Wprowadź poprawny zwrot składający się z liter, cyfr, podkreśleń i myślników."
 
 #: venv/lib/python3.5/site-packages/django/core/validators.py:250
 msgid ""
 "Enter a valid 'slug' consisting of Unicode letters, numbers, underscores, or "
 "hyphens."
 msgstr ""
-"Wprowadź poprawny zwrot składający się z liter typu Unicode, cyfr, "
-"podkreśleń i myślników."
 
 #: venv/lib/python3.5/site-packages/django/core/validators.py:255
 #: venv/lib/python3.5/site-packages/django/core/validators.py:274
 msgid "Enter a valid IPv4 address."
-msgstr "Wprowadź poprawny adres typu IPv4."
+msgstr ""
 
 #: venv/lib/python3.5/site-packages/django/core/validators.py:260
 #: venv/lib/python3.5/site-packages/django/core/validators.py:275
 msgid "Enter a valid IPv6 address."
-msgstr "Wprowadź poprawny adres typu IPv6."
+msgstr ""
 
 #: venv/lib/python3.5/site-packages/django/core/validators.py:270
 #: venv/lib/python3.5/site-packages/django/core/validators.py:273
 msgid "Enter a valid IPv4 or IPv6 address."
-msgstr "Wprowadź poprawny adres typu IPv4 lub IPv6."
+msgstr ""
 
 #: venv/lib/python3.5/site-packages/django/core/validators.py:305
 #: venv/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1110
 msgid "Enter only digits separated by commas."
-msgstr "Wprowadź tylko cyfry oddzielone przecinkami."
+msgstr ""
 
 #: venv/lib/python3.5/site-packages/django/core/validators.py:311
 #, python-format
@@ -254,6 +247,7 @@ msgid_plural ""
 "%(show_value)d)."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: venv/lib/python3.5/site-packages/django/core/validators.py:376
 #, python-format
@@ -265,6 +259,7 @@ msgid_plural ""
 "%(show_value)d)."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: venv/lib/python3.5/site-packages/django/core/validators.py:396
 #, python-format
@@ -272,6 +267,7 @@ msgid "Ensure that there are no more than %(max)s digit in total."
 msgid_plural "Ensure that there are no more than %(max)s digits in total."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: venv/lib/python3.5/site-packages/django/core/validators.py:401
 #, python-format
@@ -279,6 +275,7 @@ msgid "Ensure that there are no more than %(max)s decimal place."
 msgid_plural "Ensure that there are no more than %(max)s decimal places."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: venv/lib/python3.5/site-packages/django/core/validators.py:406
 #, python-format
@@ -288,6 +285,7 @@ msgid_plural ""
 "Ensure that there are no more than %(max)s digits before the decimal point."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: venv/lib/python3.5/site-packages/django/db/models/base.py:1191
 #: venv/lib/python3.5/site-packages/django/forms/models.py:734
@@ -598,6 +596,7 @@ msgid_plural ""
 "Ensure this filename has at most %(max)d characters (it has %(length)d)."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: venv/lib/python3.5/site-packages/django/forms/fields.py:549
 msgid "Please either submit a file or check the clear checkbox, not both."
@@ -650,6 +649,7 @@ msgid "Please submit %d or fewer forms."
 msgid_plural "Please submit %d or fewer forms."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: venv/lib/python3.5/site-packages/django/forms/formsets.py:357
 #, python-format
@@ -657,6 +657,7 @@ msgid "Please submit %d or more forms."
 msgid_plural "Please submit %d or more forms."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: venv/lib/python3.5/site-packages/django/forms/formsets.py:385
 #: venv/lib/python3.5/site-packages/django/forms/formsets.py:387
@@ -743,6 +744,7 @@ msgid "%(size)d byte"
 msgid_plural "%(size)d bytes"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: venv/lib/python3.5/site-packages/django/template/defaultfilters.py:896
 #, python-format
@@ -822,8 +824,10 @@ msgid "Sunday"
 msgstr ""
 
 #: venv/lib/python3.5/site-packages/django/utils/dates.py:10
+#, fuzzy
+#| msgid "won"
 msgid "Mon"
-msgstr ""
+msgstr "wygranych"
 
 #: venv/lib/python3.5/site-packages/django/utils/dates.py:10
 msgid "Tue"
@@ -1091,6 +1095,7 @@ msgid "%d year"
 msgid_plural "%d years"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: venv/lib/python3.5/site-packages/django/utils/timesince.py:12
 #, python-format
@@ -1098,6 +1103,7 @@ msgid "%d month"
 msgid_plural "%d months"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: venv/lib/python3.5/site-packages/django/utils/timesince.py:13
 #, python-format
@@ -1105,6 +1111,7 @@ msgid "%d week"
 msgid_plural "%d weeks"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: venv/lib/python3.5/site-packages/django/utils/timesince.py:14
 #, python-format
@@ -1112,6 +1119,7 @@ msgid "%d day"
 msgid_plural "%d days"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: venv/lib/python3.5/site-packages/django/utils/timesince.py:15
 #, python-format
@@ -1119,6 +1127,7 @@ msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: venv/lib/python3.5/site-packages/django/utils/timesince.py:16
 #, python-format
@@ -1126,6 +1135,7 @@ msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: venv/lib/python3.5/site-packages/django/utils/timesince.py:52
 msgid "0 minutes"

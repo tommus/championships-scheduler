@@ -49,3 +49,21 @@ API for Championships Scheduler.
 3. After making changes in translations, you have to compile them:
 
     > python manage.py compilemessages -l <language_code>
+
+## Dumping data:
+
+1. If you would like to dump existing data, run the following command:
+
+    > python manage.py dumpdata --indent=4 <app>.<Model> fixture/<app>_<model>.json
+
+    For example:
+
+    > python manage.py dumpdata --indent=4 championship.Team > fixture/championship_teams.json
+
+2. If you would like to load fixture, run the following command:
+
+    > python manage.py loaddata fixture/<app>_<model>.json
+
+    For example:
+
+    > python manage.py loaddata fixture/championship_teams.json
