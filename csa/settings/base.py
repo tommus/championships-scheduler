@@ -35,7 +35,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'csa.championship',
-    'csa.schedule',
 ]
 
 MIDDLEWARE = [
