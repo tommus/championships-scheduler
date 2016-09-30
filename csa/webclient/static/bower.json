@@ -1,0 +1,40 @@
+{
+  "name": "Championships Management",
+  "version": "1.0.0",
+  "authors": [
+    "Tomasz Dzieniak <tomasz.dzieniak@to-dev.com>"
+  ],
+  "moduleType": [
+    "amd",
+    "es6",
+    "globals",
+    "node",
+    "yui"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.5.8",
+    "angular-route": "1.5.8",
+    "angular-sanitize": "1.5.8",
+    "angular-q-spread": "1.1.0",
+    "bootstrap": "3.3.7",
+    "bootswatch": "3.3.7",
+    "fontawesome": "4.6.3"
+  },
+  "resolutions": {
+    "angular": "1.5.8"
+  },
+  "description": "Championships Management",
+  "keywords": [
+    "Championships",
+    "Management"
+  ]
+}

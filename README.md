@@ -16,6 +16,30 @@ API for Championships Scheduler.
 
     > pip install -r requirements.txt
 
+## Frontend management
+
+1. Install `nodeenv` package by running:
+
+	> pip install nodeenv
+
+   If you previously install packages from `requirements.txt` you can ignore this step.
+
+2. Add NodeJS virtual environment:
+
+	> nodeenv -p --prebuilt
+
+3. Add NodeJS virtual environment to existing python virtual environment:
+
+	> npm install -g bower
+
+4. All necessary JavaScript plugins are listen as Bower dependencies in `webclient/static/bower.json` file. Install them by running:
+
+	> cd elab/webclient/static/
+
+	> bower install
+
+   Wheneven (and if) necessary, from command prompt select the newest AngularJS library.
+
 ## Database synchronization
 
 1. When executing server for the first time, you have to synchronize database (and execute migrations):

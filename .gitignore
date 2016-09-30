@@ -4,6 +4,7 @@ __pycache__/
 
 # IDE files
 .idea/
+*.iml
 tmp/
 atlassian-ide-plugin.xml
 
@@ -12,7 +13,7 @@ atlassian-ide-plugin.xml
 htmlcov/
 
 # project specific
-lsr/webclient/static/bower_components
+csa/webclient/static/bower_components
 photos/*
 static/*
 
