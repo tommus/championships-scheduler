@@ -22,12 +22,17 @@
   ],
   "dependencies": {
     "angular": "1.5.8",
+    "angular-ui-bootstrap-bower": "2.1.4",
+    "angular-cookies": "1.5.8",
     "angular-route": "1.5.8",
     "angular-sanitize": "1.5.8",
-    "angular-q-spread": "1.1.0",
+    "angular-toasty": "1.0.5",
     "bootstrap": "3.3.7",
-    "bootswatch": "3.3.7",
-    "fontawesome": "4.6.3"
+    "fontawesome": "4.6.3",
+    "jquery-cookie": "1.4.1",
+    "metisMenu": "2.5.2",
+    "ngstorage": "0.3.11",
+    "sb-admin-2": ""
   },
   "resolutions": {
     "angular": "1.5.8"

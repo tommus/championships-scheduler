@@ -1,7 +1,7 @@
-"use strict";
+'use strict';
 
-angular.module("csa")
-.controller("ChampionshipsCtrl", function($scope, $q, Championships) {
+angular.module('csa')
+.controller('ChampionshipsCtrl', function($scope, $q, Championships) {
 
     $scope.championships = [];
 
