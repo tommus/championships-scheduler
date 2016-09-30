@@ -50,7 +50,7 @@ API for Championships Scheduler.
 
 2. Start server by typing:
 
-    > python manage.py runserver address:port
+    > python manage.py runserver \<address\>:\<port\>
 
 - I.e. start server at port 8000 to listen for connections from whatever source:
 
@@ -60,7 +60,7 @@ API for Championships Scheduler.
 
 1. When preparing new localization files for translation, you have to run the command:
 
-    > python manage.py makemessages -l <language_code>
+    > python manage.py makemessages -l \<language_code\>
 
 2. Files to translate are put in:
 
@@ -68,13 +68,13 @@ API for Championships Scheduler.
 
 3. After making changes in translations, you have to compile them:
 
-    > python manage.py compilemessages -l <language_code>
+    > python manage.py compilemessages -l \<language_code\>
 
 ## Dumping data:
 
 1. If you would like to dump existing data, run the following command:
 
-    > python manage.py dumpdata --indent=4 <app>.<Model> fixture/<app>_<model>.json
+    > python manage.py dumpdata --indent=4 \<app\>.\<Model\> fixture/\<app\>_\<model\>.json
 
     For example:
 
@@ -82,7 +82,7 @@ API for Championships Scheduler.
 
 2. If you would like to load fixture, run the following command:
 
-    > python manage.py loaddata fixture/<app>_<model>.json
+    > python manage.py loaddata fixture/\<app\>_\<model\>.json
 
     For example:
 
