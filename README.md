@@ -6,11 +6,11 @@ API for Championships Scheduler.
 
 1. Create virtual environment:
 
-    > virtualenv venv -p python3
+    > virtualenv .venv -p python3
 
 2. Activate virtual environment:
 
-    > source venv/bin/activate
+    > source .venv/bin/activate
 
 3. Install requirements
 
@@ -32,13 +32,9 @@ API for Championships Scheduler.
 
 	> npm install -g bower
 
-4. All necessary JavaScript plugins are listen as Bower dependencies in `webclient/static/bower.json` file. Install them by running:
-
-	> cd elab/webclient/static/
+4. All necessary JavaScript plugins are listen as Bower dependencies in `requirements/bower.json` file. Install them by running:
 
 	> bower install
-
-   Wheneven (and if) necessary, from command prompt select the newest AngularJS library.
 
 ## Database synchronization
 
@@ -50,7 +46,7 @@ API for Championships Scheduler.
 
 1. Make sure the virtual environment has been activated:
 
-    > source venv/bin/activate
+    > source .venv/bin/activate
 
 2. Start server by typing:
 
