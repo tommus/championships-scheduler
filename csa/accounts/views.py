@@ -1,7 +1,11 @@
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
-from csa.accounts import serializers
+
 from rest_framework import permissions, response, status, views
+from rest_framework import viewsets
+
+from csa.accounts import serializers
 
 
 class LoginView(views.APIView):
@@ -71,3 +75,9 @@ class UserView(views.APIView):
             {'password': _('This field may not be null.')},
             status=status.HTTP_400_BAD_REQUEST
         )
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    permission_classes = (permissions.IsAuthenticated,)
+    queryset = User.objects.all()
+    serializer_class = serializers.UserSimpleSerializer

@@ -60,22 +60,26 @@
                                     Name
                                 </th>
                                 <th class="sorting">
+                                    Groups
+                                </th>
+                                <th class="sorting">
+                                    Two-legged tie
+                                </th>
+                                <th class="sorting">
                                     Participants
                                 </th>
-                                <th class="sorting">
-                                    Started
-                                </th>
-                                <th class="sorting">
-                                    Completed
+                                <th class="teams">
+                                    Teams
                                 </th>
                             </tr>
                             </thead>
                             <tbody ng-repeat="championship in championships">
                             <tr role="row">
-                                <td>{{ championship.name }}</td>
-                                <td>{{ championship.participants }}</td>
-                                <td>{{ championship.started }}</td>
-                                <td>{{ championship.completed ? 'Yes' : 'No' }}</td>
+                                <td><a href="/#/championships/{{championship.id}}">{{ championship.name }}</a></td>
+                                <td>{{ championship.groups }}</td>
+                                <td>{{ championship.home_and_away ? 'Yes' : 'No' }}</td>
+                                <td>{{ championship.players_per_group }}</td>
+                                <td>{{ championship.participates.length }}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -86,7 +90,9 @@
                 <!-- Create championships. -->
                 <div class="row">
                     <div class="col-lg-12">
-                        <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="goCreate()">Create championships</button>
+                        <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="goCreate()">Create
+                            championships
+                        </button>
                     </div>
                 </div>
                 <!--/ Create championships. -->

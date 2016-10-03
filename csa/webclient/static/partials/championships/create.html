@@ -7,7 +7,81 @@
 <!--/ Title. -->
 
 <div class="row">
-    <div class="col-lg-12 col-md-12">
-        Content.
+    <div class="col-lg-12">
+
+        <!-- New championships form. -->
+        <form>
+
+            <!-- Name. -->
+            <div class="form-group">
+                <label for="championshipsName">Name</label>
+                <input type="text" class="form-control" id="championshipsName" placeholder="Name" ng-model="name">
+            </div>
+            <!--/ Name. -->
+
+            <!-- Groups. -->
+            <div class="form-group">
+                <label for="championshipsGroups">Groups</label>
+                <select class="form-control" id="championshipsGroups" ng-model="groups"
+                        ng-options="group for group in groups_available">
+                </select>
+            </div>
+            <!--/ Groups. -->
+
+            <!-- Player teams per group. -->
+            <div class="form-group">
+                <label for="championshipsPlayerTeamsPerGroup">Player teams per group</label>
+                <select class="form-control" id="championshipsPlayerTeamsPerGroup" ng-model="players_teams_per_group"
+                        ng-options="team for team in players_teams_per_group_available">
+                </select>
+            </div>
+            <!--/ Player teams per group. -->
+
+            <!-- Participants. -->
+            <div class="form-group">
+                <label>Participates</label>
+                <select multiple class="form-control" ng-model="participates"
+                        ng-options="participate.id as getParticipate(participate).team.name + ' (' + getParticipate(participate).user.username + ')' for participate in participates_available"
+                        ng-model="participates" multiple>
+                </select>
+            </div>
+            <!--/ Participants. -->
+
+            <!-- Home and away. -->
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div style="font-weight: bold">Game type</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <label style="font-weight: normal">
+                            <input type="radio" ng-checked="home_away" ng-model="home_away" ng-value="true">
+                            Single game only
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <label style="font-weight: normal">
+                            <input type="radio" ng-checked="!home_away" ng-model="home_away" ng-value="false">
+                            Home and away
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <!--/ Home and away. -->
+
+            <!-- Buttons. -->
+            <div class="form-group pull-right">
+                <button type="reset" class="btn btn-link">Reset</button>
+                <button type="submit" class="btn btn-primary">Generate</button>
+            </div>
+            <!--/ Buttons. -->
+
+        </form>
+        <!--/ New championships form. -->
+
     </div>
 </div>

@@ -12,3 +12,10 @@ class UserSerializer(serializers.ModelSerializer):
     def get_groups(self, obj):
         groups = obj.groups.all()
         return [group.name for group in groups]
+
+
+class UserSimpleSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ('id', 'username')
