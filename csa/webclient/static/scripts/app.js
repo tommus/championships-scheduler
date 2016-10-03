@@ -30,6 +30,14 @@ angular.module('csa', ['ngRoute', 'ngCookies', 'ngStorage', 'angular-toasty', 's
                 templateUrl: 'static/partials/auth/login.html',
                 controller:  'AuthCtrl'
             })
+            .when('/championships', {
+                templateUrl: 'static/partials/championships/championships.html',
+                controller: 'ChampionshipsCtrl'
+            })
+            .when('/championships/create', {
+                templateUrl: 'static/partials/championships/create.html',
+                controller: 'ChampionshipsCreateCtrl'
+            })
             .otherwise({
                 redirectTo: '/'
             });
