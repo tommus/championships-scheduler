@@ -3,15 +3,19 @@
 angular.module('csa')
     .controller('ChampionshipsCreateCtrl', function($scope, $location, Championships, Participates, Accounts, Teams) {
 
-        $scope.groups_available = [ 1, 2, 3, 4, 5, 6, 7, 8 ];
-        $scope.players_teams_per_group_available = [ 1, 2, 3, 4, 5, 6, 7, 8 ];
-        $scope.home_away_available = [{ 'id': 1, 'text': 'Single game only'}, { 'id': 2, 'text': 'Home and away' } ];
+        $scope.groups = [ 1, 2, 3, 4, 5, 6, 7, 8 ];
+        $scope.players_teams_per_group = [ 1, 2, 3, 4, 5, 6, 7, 8 ];
+        $scope.home_away = [{ 'id': 1, 'text': 'Single game only'}, { 'id': 2, 'text': 'Home and away' } ];
 
-        $scope.name = '';
-        $scope.groups = 1;
-        $scope.players_teams_per_group = 1;
-        $scope.participates = [];
-        $scope.home_away = true;
+        $scope.request = {
+            'name': '',
+            'groups': 1,
+            'player_teams_per_group': 1,
+            'participates': [],
+            'home_away': true
+        };
+
+        $scope.originalRequest = angular.copy($scope.request);
 
         function getUser(id) {
             if($scope.accounts === undefined) {
@@ -47,8 +51,16 @@ angular.module('csa')
             }
         };
 
+        $scope.resetValues = function() {
+            $scope.request = $scope.originalRequest;
+        };
+
+        $scope.submitValues = function() {
+            // TODO: To be implemented.
+        };
+
         Participates.query().then(function(participates) {
-           $scope.participates_available = participates.data;
+           $scope.participates = participates.data;
         });
 
         Accounts.query().then(function(accounts) {
