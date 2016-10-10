@@ -90,13 +90,8 @@ class ScheduleChampionshipViewSet(CreateModelMixin, GenericViewSet):
         championship_participates = Participation.objects.filter(championship=championship)
         championship_players = User.objects.filter(championship=championship)
 
-        print(len(championship_participates))
-        print(len(championship_players))
-
         players_per_group = len(championship_participates) / len(championship_players) / groups
         players_per_group = int(players_per_group)
-
-        print(players_per_group)
 
         available_participates = list(championship_participates)
 
