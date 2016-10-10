@@ -1,7 +1,7 @@
 import itertools
+import random
 from string import ascii_uppercase
 
-import random
 from django.contrib.admin import (
     ModelAdmin,
     register
@@ -112,7 +112,6 @@ class ChampionshipAdmin(ModelAdmin):
 
         player_teams_count = len(teams) / len(players)
         player_teams_count = int(player_teams_count)
-        print(player_teams_count)
 
         for player in players:
             player_pick = random.sample(teams, player_teams_count)
@@ -157,8 +156,7 @@ class ChampionshipAdmin(ModelAdmin):
                 [group_participates.append(t) for t in selected_player_teams]
                 available_participates = [p for p in available_participates if p not in selected_player_teams]
 
-            for participate in group_participates:
-                group.participates.add(participate)
+            [group.participates.add(participate) for participate in group_participates]
 
     def _prepare_matches(self, championship):
         groups = Group.objects.filter(championship=championship)

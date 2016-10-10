@@ -24,6 +24,9 @@ angular.module('csa')
 
         $scope.submitValues = function() {
             // TODO: To be implemented.
+            Championships.schedule($scope.request).then(function(response) {
+                console.log(response);
+            });
         };
 
         Participates.query().then(function(participates) {

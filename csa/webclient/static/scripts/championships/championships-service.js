@@ -25,6 +25,9 @@ angular.module('csa')
             },
             remove: function (data) {
                 return $http.delete(settings.BASE_URL + ADDRESS + data + '/');
+            },
+            schedule: function(data) {
+                return $http.post(settings.BASE_URL + '/championship/schedule/', data);
             }
         };
     });
