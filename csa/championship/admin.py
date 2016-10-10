@@ -1,14 +1,18 @@
 import itertools
-import random
 from string import ascii_uppercase
 
-from django.contrib.auth.models import User
+import random
 from django.contrib.admin import (
     ModelAdmin,
     register
 )
+from django.contrib.auth.models import User
 from django.db.models import F, IntegerField, Q, Sum
 from django.db.models.functions import Coalesce
+from django.forms import (
+    ModelForm,
+    BooleanField
+)
 
 from csa.championship.models import (
     Participation,
@@ -75,14 +79,27 @@ class ParticipationAdmin(ModelAdmin):
         return games_won * 3 + games_drawn
 
 
+class ChampionshipForm(ModelForm):
+    generate_schedule = BooleanField(required=False, initial=True)
+
+    class Meta:
+        fields = '__all__'
+        model = Championship
+
+
 @register(Championship)
 class ChampionshipAdmin(ModelAdmin):
+    fields = ['name', 'groups', 'players', 'teams', 'home_and_away', 'generate_schedule']
+    form = ChampionshipForm
+
     def save_model(self, request, obj, form, change):
         championship = form.save(commit=True)
 
         self._prepare_participates(championship)
-        self._prepare_groups(championship)
-        self._prepare_matches(championship)
+
+        if form.data.get('generate_schedule'):
+            self._prepare_groups(championship)
+            self._prepare_matches(championship)
 
     def _prepare_participates(self, championship):
         teams = list(Team.objects.filter(championship=championship))
