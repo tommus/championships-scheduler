@@ -55,7 +55,7 @@ class Group(Model):
     participates = ManyToManyField(Participation, verbose_name=_('participates'))
 
     def __str__(self):
-        return str('{} - {}'.format(self.championship, self.name))
+        return str("{} - {}".format(self.championship.name, self.name))
 
     class Meta:
         verbose_name = _('Group')
@@ -64,29 +64,27 @@ class Group(Model):
 
 class Match(Model):
     group = ForeignKey(Group, verbose_name=_('group'))
-    first_team = ForeignKey(
+    host_team = ForeignKey(
         Participation,
-        related_name='match_first_team',
-        verbose_name=_('first_team'),
+        related_name='match_host_team',
+        verbose_name=_('host_team'),
         blank=False
     )
-    second_team = ForeignKey(
+    guest_team = ForeignKey(
         Participation,
-        related_name='match_second_team',
-        verbose_name=_('second_team'),
+        related_name='match_guest_team',
+        verbose_name=_('guest_team'),
         blank=False
     )
-    first_team_home = BooleanField(default=True, verbose_name=_('first_team_home'))
-    second_team_home = BooleanField(default=False, verbose_name=_('second_team_home'))
-    first_team_goals = IntegerField(verbose_name=_('first_team_goals'), blank=True, null=True)
-    second_team_goals = IntegerField(verbose_name=_('second_team_goals'), blank=True, null=True)
+    host_team_goals = IntegerField(verbose_name=_('host_team_goals'), blank=True, null=True)
+    guest_team_goals = IntegerField(verbose_name=_('guest_team_goals'), blank=True, null=True)
 
     def __str__(self):
         return str('{} ({}) - ({}) {}'.format(
-            self.first_team,
-            self.first_team_goals if self.first_team_goals is not None else '',
-            self.second_team_goals if self.second_team_goals is not None else '',
-            self.second_team
+            self.host_team,
+            self.host_team_goals if self.host_team_goals is not None else '',
+            self.guest_team_goals if self.guest_team_goals is not None else '',
+            self.guest_team
         ))
 
     class Meta:

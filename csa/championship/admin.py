@@ -7,7 +7,7 @@ from django.contrib.admin import (
     register
 )
 from django.contrib.auth.models import User
-from django.db.models import F, IntegerField, Q, Sum
+from django.db.models import Count, F, IntegerField, Q, Sum
 from django.db.models.functions import Coalesce
 from django.forms import (
     ModelForm,
@@ -39,38 +39,43 @@ class ParticipationAdmin(ModelAdmin):
     list_display_links = ['team']
     list_filter = ['player__username', 'group', 'championship']
 
+    def get_queryset(self, request):
+        queryset = super(ParticipationAdmin, self).get_queryset(request)
+        queryset = queryset.annotate(Count('championship'))
+        return queryset
+
     def games_played(self, obj):
-        home_played = Match.objects.filter(Q(first_team=obj) & Q(first_team_goals__isnull=False))
-        away_played = Match.objects.filter(Q(second_team=obj) & Q(second_team_goals__isnull=False))
+        home_played = Match.objects.filter(Q(host_team=obj) & Q(host_team_goals__isnull=False))
+        away_played = Match.objects.filter(Q(guest_team=obj) & Q(guest_team_goals__isnull=False))
         return home_played.count() + away_played.count()
 
     def games_won(self, obj):
-        home_won = Match.objects.filter(Q(first_team=obj) & Q(first_team_goals__gt=F('second_team_goals')))
-        away_won = Match.objects.filter(Q(second_team=obj) & Q(second_team_goals__gt=F('first_team_goals')))
+        home_won = Match.objects.filter(Q(host_team=obj) & Q(host_team_goals__gt=F('guest_team_goals')))
+        away_won = Match.objects.filter(Q(guest_team=obj) & Q(guest_team_goals__gt=F('host_team_goals')))
         return home_won.count() + away_won.count()
 
     def games_drawn(self, obj):
-        home_drawn = Match.objects.filter(Q(first_team=obj) & Q(first_team_goals=F('second_team_goals')))
-        away_drawn = Match.objects.filter(Q(second_team=obj) & Q(second_team_goals=F('first_team_goals')))
+        home_drawn = Match.objects.filter(Q(host_team=obj) & Q(host_team_goals=F('guest_team_goals')))
+        away_drawn = Match.objects.filter(Q(guest_team=obj) & Q(guest_team_goals=F('host_team_goals')))
         return home_drawn.count() + away_drawn.count()
 
     def games_lost(self, obj):
-        home_lost = Match.objects.filter(Q(first_team=obj) & Q(first_team_goals__lt=F('second_team_goals')))
-        away_lost = Match.objects.filter(Q(second_team=obj) & Q(second_team_goals__lt=F('first_team_goals')))
+        home_lost = Match.objects.filter(Q(host_team=obj) & Q(host_team_goals__lt=F('guest_team_goals')))
+        away_lost = Match.objects.filter(Q(guest_team=obj) & Q(guest_team_goals__lt=F('host_team_goals')))
         return home_lost.count() + away_lost.count()
 
     def goals_scored(self, obj):
-        home_played = Match.objects.filter(Q(first_team=obj))
-        away_played = Match.objects.filter(Q(second_team=obj))
-        home_scored = home_played.aggregate(goals=Coalesce(Sum('first_team_goals', output_field=IntegerField()), 0))
-        away_scored = away_played.aggregate(goals=Coalesce(Sum('second_team_goals', output_field=IntegerField()), 0))
+        home_played = Match.objects.filter(Q(host_team=obj))
+        away_played = Match.objects.filter(Q(guest_team=obj))
+        home_scored = home_played.aggregate(goals=Coalesce(Sum('host_team_goals', output_field=IntegerField()), 0))
+        away_scored = away_played.aggregate(goals=Coalesce(Sum('guest_team_goals', output_field=IntegerField()), 0))
         return home_scored['goals'] + away_scored['goals']
 
     def goals_lost(self, obj):
-        home_played = Match.objects.filter(Q(first_team=obj))
-        away_played = Match.objects.filter(Q(second_team=obj))
-        home_lost = home_played.aggregate(goals=Coalesce(Sum('second_team_goals', output_field=IntegerField()), 0))
-        away_lost = away_played.aggregate(goals=Coalesce(Sum('first_team_goals', output_field=IntegerField()), 0))
+        home_played = Match.objects.filter(Q(host_team=obj))
+        away_played = Match.objects.filter(Q(guest_team=obj))
+        home_lost = home_played.aggregate(goals=Coalesce(Sum('guest_team_goals', output_field=IntegerField()), 0))
+        away_lost = away_played.aggregate(goals=Coalesce(Sum('host_team_goals', output_field=IntegerField()), 0))
         return home_lost['goals'] + away_lost['goals']
 
     def points(self, obj):
@@ -173,8 +178,8 @@ class ChampionshipAdmin(ModelAdmin):
             if pair[0].player != pair[1].player:
                 match = Match(
                     group=group,
-                    first_team=pair[0 if home else 1],
-                    second_team=pair[1 if home else 0]
+                    host_team=pair[0 if home else 1],
+                    guest_team=pair[1 if home else 0]
                 )
                 match.save()
 
@@ -182,7 +187,7 @@ class ChampionshipAdmin(ModelAdmin):
 @register(Match)
 class MatchAdmin(ModelAdmin):
     list_filter = ['group__championship__name', 'group__name']
-    list_display = ['first_team', 'first_team_goals', 'second_team_goals', 'second_team']
+    list_display = ['host_team', 'host_team_goals', 'guest_team_goals', 'guest_team']
     list_display_links = list_display
 
 

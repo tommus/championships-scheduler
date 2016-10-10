@@ -34,3 +34,6 @@ urlpatterns = [
     # ex: /admin/
     url(r'^admin/', admin.site.urls),
 ]
+
+admin.site.site_title = "Championships Manager"
+admin.site.site_header = "Championships Manager"

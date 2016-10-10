@@ -54,32 +54,32 @@ class ParticipateResultsSerializer(ModelSerializer):
         }
 
     def _get_games_won(self, obj):
-        home_won = Match.objects.filter(Q(first_team__id=obj.id) & Q(first_team_goals__gt=F('second_team_goals')))
-        away_won = Match.objects.filter(Q(second_team__id=obj.id) & Q(second_team_goals__gt=F('first_team_goals')))
+        home_won = Match.objects.filter(Q(host_team__id=obj.id) & Q(host_team_goals__gt=F('guest_team_goals')))
+        away_won = Match.objects.filter(Q(guest_team__id=obj.id) & Q(guest_team_goals__gt=F('host_team_goals')))
         return home_won.count() + away_won.count()
 
     def _get_games_drawn(self, obj):
-        home_drawn = Match.objects.filter(Q(first_team__id=obj.id) & Q(first_team_goals=F('second_team_goals')))
-        away_drawn = Match.objects.filter(Q(second_team__id=obj.id) & Q(second_team_goals=F('first_team_goals')))
+        home_drawn = Match.objects.filter(Q(host_team__id=obj.id) & Q(host_team_goals=F('guest_team_goals')))
+        away_drawn = Match.objects.filter(Q(guest_team__id=obj.id) & Q(guest_team_goals=F('host_team_goals')))
         return home_drawn.count() + away_drawn.count()
 
     def _get_games_lost(self, obj):
-        home_lost = Match.objects.filter(Q(first_team__id=obj.id) & Q(first_team_goals__lt=F('second_team_goals')))
-        away_lost = Match.objects.filter(Q(second_team__id=obj.id) & Q(second_team_goals__lt=F('first_team_goals')))
+        home_lost = Match.objects.filter(Q(host_team__id=obj.id) & Q(host_team_goals__lt=F('guest_team_goals')))
+        away_lost = Match.objects.filter(Q(guest_team__id=obj.id) & Q(guest_team_goals__lt=F('host_team_goals')))
         return home_lost.count() + away_lost.count()
 
     def _get_goals_scored(self, obj):
-        home_played = Match.objects.filter(Q(first_team__id=obj.id))
-        away_played = Match.objects.filter(Q(second_team__id=obj.id))
-        home_scored = home_played.aggregate(goals=Coalesce(Sum('first_team_goals', output_field=IntegerField()), 0))
-        away_scored = away_played.aggregate(goals=Coalesce(Sum('second_team_goals', output_field=IntegerField()), 0))
+        home_played = Match.objects.filter(Q(host_team__id=obj.id))
+        away_played = Match.objects.filter(Q(guest_team__id=obj.id))
+        home_scored = home_played.aggregate(goals=Coalesce(Sum('host_team_goals', output_field=IntegerField()), 0))
+        away_scored = away_played.aggregate(goals=Coalesce(Sum('guest_team_goals', output_field=IntegerField()), 0))
         return home_scored['goals'] + away_scored['goals']
 
     def _get_goals_lost(self, obj):
-        home_played = Match.objects.filter(Q(first_team__id=obj.id))
-        away_played = Match.objects.filter(Q(second_team__id=obj.id))
-        home_lost = home_played.aggregate(goals=Coalesce(Sum('second_team_goals', output_field=IntegerField()), 0))
-        away_lost = away_played.aggregate(goals=Coalesce(Sum('first_team_goals', output_field=IntegerField()), 0))
+        home_played = Match.objects.filter(Q(host_team__id=obj.id))
+        away_played = Match.objects.filter(Q(guest_team__id=obj.id))
+        home_lost = home_played.aggregate(goals=Coalesce(Sum('guest_team_goals', output_field=IntegerField()), 0))
+        away_lost = away_played.aggregate(goals=Coalesce(Sum('host_team_goals', output_field=IntegerField()), 0))
         return home_lost['goals'] + away_lost['goals']
 
 
