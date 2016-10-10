@@ -1,15 +1,21 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
-
-from rest_framework import permissions, response, status, views
-from rest_framework import viewsets
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.status import (
+    HTTP_204_NO_CONTENT,
+    HTTP_400_BAD_REQUEST,
+    HTTP_401_UNAUTHORIZED
+)
+from rest_framework.views import APIView
+from rest_framework.viewsets import ModelViewSet
 
 from csa.accounts import serializers
 
 
-class LoginView(views.APIView):
-    permission_classes = (permissions.AllowAny,)
+class LoginView(APIView):
+    permission_classes = [AllowAny]
     serializer_class = serializers.UserSerializer
 
     @staticmethod
@@ -24,31 +30,31 @@ class LoginView(views.APIView):
                     user,
                     context={'request': request}
                 )
-                return response.Response(serialized.data)
+                return Response(serialized.data)
             else:
-                return response.Response(
+                return Response(
                     {'detail': _('This account is inactive.')},
-                    status=status.HTTP_401_UNAUTHORIZED
+                    status=HTTP_401_UNAUTHORIZED
                 )
         else:
-            return response.Response(
+            return Response(
                 {'detail': _('Login or password invalid.')},
-                status=status.HTTP_401_UNAUTHORIZED
+                status=HTTP_401_UNAUTHORIZED
             )
 
 
-class LogoutView(views.APIView):
-    permission_classes = (permissions.IsAuthenticated,)
+class LogoutView(APIView):
+    permission_classes = [IsAuthenticated]
     serializer_class = serializers.UserSerializer
 
     @staticmethod
     def post(request):
         logout(request)
-        return response.Response({}, status=status.HTTP_204_NO_CONTENT)
+        return Response({}, status=HTTP_204_NO_CONTENT)
 
 
-class UserView(views.APIView):
-    permission_classes = (permissions.IsAuthenticated,)
+class UserView(APIView):
+    permission_classes = [IsAuthenticated]
     serializer_class = serializers.UserSerializer
 
     @staticmethod
@@ -57,7 +63,7 @@ class UserView(views.APIView):
             request.user,
             context={'request': request}
         )
-        return response.Response(serialized.data)
+        return Response(serialized.data)
 
     @staticmethod
     def put(request):
@@ -70,14 +76,14 @@ class UserView(views.APIView):
                 request.user,
                 context={'request': request}
             )
-            return response.Response(serialized.data)
-        return response.Response(
+            return Response(serialized.data)
+        return Response(
             {'password': _('This field may not be null.')},
-            status=status.HTTP_400_BAD_REQUEST
+            status=HTTP_400_BAD_REQUEST
         )
 
 
-class UserViewSet(viewsets.ModelViewSet):
-    permission_classes = (permissions.IsAuthenticated,)
+class UserViewSet(ModelViewSet):
+    permission_classes = [IsAuthenticated]
     queryset = User.objects.all()
     serializer_class = serializers.UserSimpleSerializer

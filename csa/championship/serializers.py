@@ -1,29 +1,29 @@
 from django.db.models import F, IntegerField, Q, Sum
 from django.db.models.functions import Coalesce
-from rest_framework import serializers
+from rest_framework.serializers import ModelSerializer, SerializerMethodField
 
 from csa.championship.models import Championship, Group, Participation, Team, Match
 
 
-class ChampionshipSerializer(serializers.ModelSerializer):
+class ChampionshipSerializer(ModelSerializer):
     class Meta:
         model = Championship
 
 
-class GroupSerializer(serializers.ModelSerializer):
+class GroupSerializer(ModelSerializer):
     class Meta:
         model = Group
 
 
-class ParticipationSerializer(serializers.ModelSerializer):
+class ParticipationSerializer(ModelSerializer):
     class Meta:
         model = Participation
 
 
-class ParticipateResultsSerializer(serializers.ModelSerializer):
-    team = serializers.SerializerMethodField()
-    player = serializers.SerializerMethodField()
-    results = serializers.SerializerMethodField()
+class ParticipateResultsSerializer(ModelSerializer):
+    team = SerializerMethodField()
+    player = SerializerMethodField()
+    results = SerializerMethodField()
 
     class Meta:
         model = Participation
@@ -83,11 +83,11 @@ class ParticipateResultsSerializer(serializers.ModelSerializer):
         return home_lost['goals'] + away_lost['goals']
 
 
-class TeamSerializer(serializers.ModelSerializer):
+class TeamSerializer(ModelSerializer):
     class Meta:
         model = Team
 
 
-class MatchSerializer(serializers.ModelSerializer):
+class MatchSerializer(ModelSerializer):
     class Meta:
         model = Match
