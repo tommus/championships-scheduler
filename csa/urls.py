@@ -3,11 +3,19 @@ from django.contrib import admin
 from rest_framework import routers
 
 from csa.accounts.views import LoginView, LogoutView, UserViewSet
-from csa.championship.views import ChampionshipViewSet, GroupViewSet, ParticipationViewSet, MatchViewSet, TeamViewSet
+from csa.championship.views import (
+    ChampionshipViewSet,
+    ChampionshipParticipatesViewSet,
+    GroupViewSet,
+    ParticipationViewSet,
+    MatchViewSet,
+    TeamViewSet
+)
 
 router = routers.DefaultRouter()
 router.register(r'accounts/users', UserViewSet)
 router.register(r'championship/championships', ChampionshipViewSet)
+router.register(r'championship/championships/(?P<id>[0-9]+)/participates', ChampionshipParticipatesViewSet)
 router.register(r'championship/groups', GroupViewSet)
 router.register(r'championship/participates', ParticipationViewSet)
 router.register(r'championship/matches', MatchViewSet)
