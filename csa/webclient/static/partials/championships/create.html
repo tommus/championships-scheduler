@@ -28,24 +28,24 @@
             </div>
             <!--/ Groups. -->
 
-            <!-- Player teams per group. -->
+            <!-- Players. -->
             <div class="form-group">
-                <label for="playerTeamsPerGroup">Player teams per group</label>
-                <select class="form-control" id="playerTeamsPerGroup" ng-model="request.player_teams_per_group"
-                        ng-options="team for team in players_teams_per_group">
-                </select>
-            </div>
-            <!--/ Player teams per group. -->
-
-            <!-- Participants. -->
-            <div class="form-group">
-                <label>Participates</label>
-                <select class="form-control" ng-model="request.participates"
-                        ng-options="participate.id as getParticipate(participate).team.name + ' (' + getParticipate(participate).user.username + ')' for participate in participates"
+                <label>Players</label>
+                <select class="form-control" ng-model="request.players" ng-options="player.username for player in players"
                         multiple>
                 </select>
             </div>
-            <!--/ Participants. -->
+            <!--/ Players. -->
+
+            <!-- Teams. -->
+            <div class="form-group">
+                <label>Teams</label>
+                <select class="form-control" ng-model="request.teams"
+                        ng-options="team.name for team in teams"
+                        multiple>
+                </select>
+            </div>
+            <!--/ Teams. -->
 
             <!-- Home and away. -->
             <div class="form-group">
