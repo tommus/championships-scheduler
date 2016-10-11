@@ -1,24 +1,34 @@
 'use strict';
 
 angular.module('csa')
-  .controller('ChampionshipsDetailsCtrl', function ($scope, $location, $q, $routeParams, Championships, Groups, Results) {
+  .controller('ChampionshipsDetailsCtrl', function ($scope, $location, $q, $routeParams, Championships, Groups, Results, Matches, Participates, Teams, Accounts) {
 
     $scope.loadData = function () {
       $q.all([
         Championships.get($routeParams.id),
         Groups.query({championship: $routeParams.id}),
-        Results.query({championship: $routeParams.id})
+        Results.query({championship: $routeParams.id}),
+        Matches.query({group__championship: $routeParams.id}),
+        Participates.query({championship: $routeParams.id}),
+        Teams.query({championship: $routeParams.id}),
+        Accounts.query({championship: $routeParams.id})
       ]).then(function (data) {
         $scope.championships = data[0].data;
         $scope.groups        = data[1].data;
         $scope.results       = data[2].data;
+        $scope.matches       = data[3].data;
+        $scope.participates  = data[4].data;
+        $scope.teams         = data[5].data;
+        $scope.players       = data[6].data;
 
         sortGroupParticipatesByResults($scope.groups, $scope.results);
       });
     };
     $scope.loadData();
 
-    $scope.getById = getById;
+    $scope.getById       = getById;
+    $scope.getPanelStyle = getPanelStyle;
+    $scope.sanitizeScore = sanitizeScore;
   });
 
 function getById(collection, id) {
@@ -46,4 +56,24 @@ function sortByResults(participates, results) {
     }
     return aResults['points'] < bResults['points'];
   });
+}
+
+function getPanelStyle(match, home) {
+  if (match.host_team_goals === null || match.guest_team_goals === null) {
+    return 'panel panel-default';
+  }
+  if (match.host_team_goals > match.guest_team_goals) {
+    return home ? 'panel panel-success' : 'panel panel-danger';
+  }
+  if (match.host_team_goals < match.guest_team_goals) {
+    return home ? 'panel panel-danger' : 'panel panel-success';
+  }
+  return 'panel panel-info';
+}
+
+function sanitizeScore(score) {
+  if(score === null || score === null) {
+    return '-';
+  }
+  return score;
 }

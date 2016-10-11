@@ -31,7 +31,7 @@ angular.module('csa', ['ngRoute', 'ngCookies', 'ngStorage', 'angular-toasty', 'u
         controller:  'AuthCtrl'
       })
       .when('/championships', {
-        templateUrl: 'static/partials/championships/championships.html',
+        templateUrl: 'static/partials/championships/list.html',
         controller:  'ChampionshipsCtrl'
       })
       .when('/championships/details/:id', {

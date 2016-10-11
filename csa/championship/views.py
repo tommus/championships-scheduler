@@ -3,9 +3,7 @@ from string import ascii_uppercase
 
 import random
 from django.contrib.auth.models import User
-from rest_framework.mixins import (
-    CreateModelMixin
-)
+from rest_framework.mixins import CreateModelMixin
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK
@@ -174,6 +172,7 @@ class TeamViewSet(ModelViewSet):
 
 
 class MatchViewSet(ModelViewSet):
+    filter_fields = ['group__championship']
     permission_classes = [IsAuthenticated]
     queryset = Match.objects.all()
     serializer_class = MatchSerializer
