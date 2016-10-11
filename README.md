@@ -1,6 +1,6 @@
-# Championships Scheduler - API
+# Championships Scheduler
 
-API for Championships Scheduler.
+API and web application for Championships Scheduler.
 
 ## Backend management
 
