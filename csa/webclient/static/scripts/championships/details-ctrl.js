@@ -40,7 +40,7 @@ function getById(collection, id) {
 
 function sortGroupParticipatesByResults(groups, results) {
   groups.forEach(function (group) {
-    group.participates = sortByResults(group.participates, results)
+    group.participates = sortByResults(group.participates, results);
   });
 }
 
@@ -48,13 +48,14 @@ function sortByResults(participates, results) {
   return participates.sort(function (a, b) {
     var aResults = getById(results, a).results;
     var bResults = getById(results, b).results;
+
     if (aResults['points'] === bResults['points']) {
       if (aResults['goals_balance'] === bResults['goals_balance']) {
-        return aResults['games_played'] === bResults['games_played'];
+        return bResults['games_played'] - aResults['games_played'];
       }
-      return aResults['goals_balance'] < bResults['goals_balance'];
+      return bResults['goals_balance'] - aResults['goals_balance'];
     }
-    return aResults['points'] < bResults['points'];
+    return bResults.points - aResults.points;
   });
 }
 
