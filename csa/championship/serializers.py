@@ -23,7 +23,7 @@ class ParticipationSerializer(ModelSerializer):
         model = Participation
 
 
-class ParticipateResultsSerializer(ModelSerializer):
+class ResultsSerializer(ModelSerializer):
     team = SerializerMethodField()
     player = SerializerMethodField()
     results = SerializerMethodField()

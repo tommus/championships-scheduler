@@ -19,7 +19,7 @@ from csa.championship.serializers import (
     ChampionshipSerializer,
     GroupSerializer,
     ParticipationSerializer,
-    ParticipateResultsSerializer,
+    ResultsSerializer,
     TeamSerializer,
     MatchSerializer
 )
@@ -145,17 +145,6 @@ class ScheduleChampionshipViewSet(CreateModelMixin, GenericViewSet):
                 match.save()
 
 
-class ChampionshipParticipatesViewSet(ModelViewSet):
-    permission_classes = [IsAuthenticated]
-    queryset = Participation.objects.none()
-    serializer_class = ParticipateResultsSerializer
-
-    def get_queryset(self):
-        id = self.kwargs.get('id')
-        queryset = Participation.objects.filter(championship__id=id)
-        return queryset
-
-
 class GroupViewSet(ModelViewSet):
     filter_fields = ['championship']
     permission_classes = [IsAuthenticated]
@@ -170,11 +159,11 @@ class ParticipationViewSet(ModelViewSet):
     serializer_class = ParticipationSerializer
 
 
-class ParticipateResultsViewSet(ModelViewSet):
+class ResultsViewSet(ModelViewSet):
     filter_fields = ['id', 'championship']
     permission_classes = [IsAuthenticated]
     queryset = Participation.objects.all()
-    serializer_class = ParticipateResultsSerializer
+    serializer_class = ResultsSerializer
 
 
 class TeamViewSet(ModelViewSet):
