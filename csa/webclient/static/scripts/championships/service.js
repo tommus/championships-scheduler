@@ -4,9 +4,6 @@ angular.module('csa')
   .service('Championships', function (settings, $http) {
     var ADDRESS = '/championship/championships/';
     return {
-      all:      function () {
-        return $http.get(settings.BASE_URL + ADDRESS);
-      },
       get:      function (data, parameters) {
         parameters = typeof parameters !== 'undefined' ? parameters : {};
         return $http.get(settings.BASE_URL + ADDRESS + data + '/', {
@@ -29,6 +26,12 @@ angular.module('csa')
   .service('Teams', function (settings, $http) {
     var ADDRESS = '/championship/teams/';
     return {
+      get:      function (data, parameters) {
+        parameters = typeof parameters !== 'undefined' ? parameters : {};
+        return $http.get(settings.BASE_URL + ADDRESS + data + '/', {
+          params: parameters
+        });
+      },
       query: function (parameters) {
         parameters = typeof parameters !== 'undefined' ? parameters : {};
         return $http.get(settings.BASE_URL + ADDRESS, {
@@ -42,9 +45,6 @@ angular.module('csa')
   .service('Groups', function (settings, $http) {
     var ADDRESS = '/championship/groups/';
     return {
-      all:   function () {
-        return $http.get(settings.BASE_URL + ADDRESS);
-      },
       query: function (parameters) {
         parameters = typeof parameters !== 'undefined' ? parameters : {};
         return $http.get(settings.BASE_URL + ADDRESS, {
@@ -71,9 +71,6 @@ angular.module('csa')
   .service('Matches', function (settings, $http) {
     var ADDRESS = '/championship/matches/';
     return {
-      all:   function () {
-        return $http.get(settings.BASE_URL + ADDRESS);
-      },
       get:   function (data, parameters) {
         parameters = typeof parameters !== 'undefined' ? parameters : {};
         return $http.get(settings.BASE_URL + ADDRESS + data + '/', {
@@ -85,6 +82,9 @@ angular.module('csa')
         return $http.get(settings.BASE_URL + ADDRESS, {
           params: parameters
         });
+      },
+      patch:  function (id, data) {
+        return $http.patch(settings.BASE_URL + ADDRESS + id + '/', data);
       }
     };
   });

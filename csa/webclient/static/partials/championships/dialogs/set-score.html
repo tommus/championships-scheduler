@@ -1,0 +1,36 @@
+<!-- Header. -->
+<div class="modal-header">
+    <h3 class="modal-title">
+        Define match score
+    </h3>
+</div>
+<!--/ Header. -->
+
+<!-- Content. -->
+<div class="modal-body">
+
+    <form>
+
+    <div class="form-group">
+        <label for="hostGoals">{{hostTeam.name}} ({{hostPlayer.username}})</label>
+        <input type="number" class="form-control" id="hostGoals" ng-model="match.host_team_goals"
+            placeholder="0">
+    </div>
+
+    <div class="form-group">
+        <label for="guestGoals">{{guestTeam.name}} ({{guestPlayer.username}})</label>
+        <input type="number" class="form-control" id="guestGoals" ng-model="match.guest_team_goals"
+            placeholder="0">
+    </div>
+
+    </form>
+
+</div>
+<!--/ Content. -->
+
+<!-- Footer. -->
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="submit()">Submit</button>
+    <button type="button" class="btn btn-link" ng-click="cancel()">Cancel</button>
+</div>
+<!--/ Footer. -->

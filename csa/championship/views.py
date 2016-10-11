@@ -151,7 +151,7 @@ class GroupViewSet(ModelViewSet):
 
 
 class ParticipationViewSet(ModelViewSet):
-    filter_fields = ['championship']
+    filter_fields = ['id', 'championship']
     permission_classes = [IsAuthenticated]
     queryset = Participation.objects.all()
     serializer_class = ParticipationSerializer

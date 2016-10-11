@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('csa')
-  .controller('ChampionshipsDetailsCtrl', function ($scope, $location, $q, $routeParams, Championships, Groups, Results, Matches, Participates, Teams, Accounts) {
+  .controller('ChampionshipsDetailsCtrl', function ($scope, $location, $q, $routeParams, $uibModal, $route, settings, Championships, Groups, Results, Matches, Participates, Teams, Accounts) {
 
     $scope.loadData = function () {
       $q.all([
@@ -14,21 +14,48 @@ angular.module('csa')
         Accounts.query({championship: $routeParams.id})
       ]).then(function (data) {
         $scope.championships = data[0].data;
-        $scope.groups        = data[1].data;
-        $scope.results       = data[2].data;
-        $scope.matches       = data[3].data;
-        $scope.participates  = data[4].data;
-        $scope.teams         = data[5].data;
-        $scope.players       = data[6].data;
+        $scope.groups = data[1].data;
+        $scope.results = data[2].data;
+        $scope.matches = data[3].data;
+        $scope.participates = data[4].data;
+        $scope.teams = data[5].data;
+        $scope.players = data[6].data;
 
         sortGroupParticipatesByResults($scope.groups, $scope.results);
       });
     };
     $scope.loadData();
 
-    $scope.getById       = getById;
+    $scope.getById = getById;
     $scope.getPanelStyle = getPanelStyle;
     $scope.sanitizeScore = sanitizeScore;
+
+    $scope.reset = function () {
+      var promises = [];
+
+      $scope.matches.forEach(function (match) {
+        promises.push(Matches.patch(match.id, {host_team_goals: null, guest_team_goals: null}))
+      });
+
+      $q.all(promises).then(function (response) {
+        $route.reload();
+      });
+    };
+
+    $scope.showSetScore = function (match) {
+      $uibModal.open({
+        templateUrl: settings.STATIC_URL + '/partials/championships/dialogs/set-score.html',
+        animation: true,
+        controller: 'SetScoreCtrl',
+        resolve: {
+          match: function () {
+            return match;
+          }
+        }
+      }).closed.then(function () {
+        $route.reload();
+      });
+    }
   });
 
 function getById(collection, id) {
@@ -73,7 +100,7 @@ function getPanelStyle(match, home) {
 }
 
 function sanitizeScore(score) {
-  if(score === null || score === null) {
+  if (score === null || score === null) {
     return '-';
   }
   return score;

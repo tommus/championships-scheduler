@@ -9,9 +9,9 @@ angular.module('csa')
 
     $scope.loadData = function () {
       $q.all([
-        Championships.all(),
-        Groups.all(),
-        Matches.all()
+        Championships.query(),
+        Groups.query(),
+        Matches.query()
       ]).then(function (data) {
         $scope.championshipsCount = data[0].data.length;
         $scope.groupsCount        = data[1].data.length;
