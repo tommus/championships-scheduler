@@ -1,0 +1,70 @@
+<!-- Title. -->
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Championships - {{ championships.name }}</h1>
+    </div>
+</div>
+<!--/ Title. -->
+
+<div class="row">
+    <div class="col-lg-12 col-md-12">
+
+        <uib-tabset active="active">
+            <uib-tab index="$index + 1" ng-repeat="group in groups" heading="Group {{group.name}}">
+
+                <!-- Group table. -->
+                <table class="table table-hover">
+
+                    <!-- Table header. -->
+                    <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Team</th>
+                        <th>Player</th>
+                        <th>Played</th>
+                        <th>Won</th>
+                        <th>Drawn</th>
+                        <th>Lost</th>
+                        <th>Goals scored</th>
+                        <th>Goals lost</th>
+                        <th>Goals balance</th>
+                        <th>Points</th>
+                    </tr>
+                    </thead>
+                    <!--/ Table header. -->
+
+                    <!-- Table body. -->
+                    <tbody>
+
+                    <tr ng-repeat="participate in group.participates">
+                        <td>{{ $index + 1 }}</td>
+                        <td>{{ getById(results, participate).team }}</td>
+                        <td>{{ getById(results, participate).player }}</td>
+                        <td>{{ getById(results, participate).results['games_played'] }}</td>
+                        <td>{{ getById(results, participate).results['games_won'] }}</td>
+                        <td>{{ getById(results, participate).results['games_drawn'] }}</td>
+                        <td>{{ getById(results, participate).results['games_lost'] }}</td>
+                        <td>{{ getById(results, participate).results['goals_scored'] }}</td>
+                        <td>{{ getById(results, participate).results['goals_lost'] }}</td>
+                        <td>{{ getById(results, participate).results['goals_balance'] }}</td>
+                        <td>{{ getById(results, participate).results['points'] }}</td>
+                    </tr>
+
+                    </tbody>
+                    <!--/ Table body. -->
+
+                    <!-- Table footer. -->
+                    <tfoot>
+
+                    </tfoot>
+                    <!--/ Table footer. -->
+
+                </table>
+                <!-- Group table. -->
+
+            </uib-tab>
+        </uib-tabset>
+        <!--/ Group tabs. -->
+
+    </div>
+</div>

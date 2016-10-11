@@ -9,6 +9,7 @@ from csa.championship.views import (
     ScheduleChampionshipViewSet,
     GroupViewSet,
     ParticipationViewSet,
+    ParticipateResultsViewSet,
     MatchViewSet,
     TeamViewSet
 )
@@ -16,10 +17,11 @@ from csa.championship.views import (
 router = routers.DefaultRouter()
 router.register(r'accounts/users', UserViewSet)
 router.register(r'championship/championships', ChampionshipViewSet)
-router.register(r'championship/championships/(?P<id>[0-9]+)/participates/$', ChampionshipParticipatesViewSet)
+router.register(r'championship/championships/(?P<id>[0-9]+)/participates', ChampionshipParticipatesViewSet)
 router.register(r'championship/schedule', ScheduleChampionshipViewSet, base_name='schedule')
 router.register(r'championship/groups', GroupViewSet)
 router.register(r'championship/participates', ParticipationViewSet)
+router.register(r'championship/results', ParticipateResultsViewSet, base_name='results')
 router.register(r'championship/matches', MatchViewSet)
 router.register(r'championship/teams', TeamViewSet)
 

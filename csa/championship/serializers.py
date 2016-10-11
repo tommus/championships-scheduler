@@ -1,6 +1,9 @@
 from django.db.models import F, IntegerField, Q, Sum
 from django.db.models.functions import Coalesce
-from rest_framework.serializers import ModelSerializer, SerializerMethodField
+from rest_framework.serializers import (
+    ModelSerializer,
+    SerializerMethodField
+)
 
 from csa.championship.models import Championship, Group, Participation, Team, Match
 
@@ -38,18 +41,20 @@ class ParticipateResultsSerializer(ModelSerializer):
         games_won = self._get_games_won(obj)
         games_drawn = self._get_games_drawn(obj)
         games_lost = self._get_games_lost(obj)
-        games_plaed = games_won + games_drawn + games_lost
+        games_played = games_won + games_drawn + games_lost
         goals_scored = self._get_goals_scored(obj)
         goals_lost = self._get_goals_lost(obj)
+        goals_balance = goals_scored - goals_lost
         points = games_won * 3 + games_drawn
 
         return {
-            'games_played': games_plaed,
+            'games_played': games_played,
             'games_won': games_won,
             'games_drawn': games_drawn,
             'games_lost': games_lost,
             'goals_scored': goals_scored,
             'goals_lost': goals_lost,
+            'goals_balance': goals_balance,
             'points': points
         }
 

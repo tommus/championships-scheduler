@@ -6,11 +6,11 @@ API for Championships Scheduler.
 
 1. Create virtual environment:
 
-    > virtualenv .venv -p python3
+    > virtualenv venv -p python3
 
 2. Activate virtual environment:
 
-    > source .venv/bin/activate
+    > source venv/bin/activate
 
 3. Install requirements
 
@@ -46,7 +46,7 @@ API for Championships Scheduler.
 
 1. Make sure the virtual environment has been activated:
 
-    > source .venv/bin/activate
+    > source venv/bin/activate
 
 2. Start server by typing:
 
@@ -64,7 +64,7 @@ API for Championships Scheduler.
 
 2. Files to translate are put in:
 
-    <project_root>/locale/<language_code>/LC_MESSAGES/django.po
+    <project_root>/locale/\<language_code\>/LC_MESSAGES/django.po
 
 3. After making changes in translations, you have to compile them:
 

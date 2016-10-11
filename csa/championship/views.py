@@ -1,16 +1,18 @@
 import itertools
-import random
 from string import ascii_uppercase
 
+import random
 from django.contrib.auth.models import User
-from rest_framework.generics import ListCreateAPIView
 from rest_framework.mixins import (
     CreateModelMixin
 )
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK
-from rest_framework.viewsets import GenericViewSet, ModelViewSet
+from rest_framework.viewsets import (
+    GenericViewSet,
+    ModelViewSet
+)
 
 from csa.championship.models import Championship, Group, Participation, Team, Match
 from csa.championship.serializers import (
@@ -155,24 +157,28 @@ class ChampionshipParticipatesViewSet(ModelViewSet):
 
 
 class GroupViewSet(ModelViewSet):
+    filter_fields = ['championship']
     permission_classes = [IsAuthenticated]
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
 
 
 class ParticipationViewSet(ModelViewSet):
+    filter_fields = ['championship']
     permission_classes = [IsAuthenticated]
     queryset = Participation.objects.all()
     serializer_class = ParticipationSerializer
 
 
 class ParticipateResultsViewSet(ModelViewSet):
+    filter_fields = ['id', 'championship']
     permission_classes = [IsAuthenticated]
-    queryset = Participation.objects.none()
+    queryset = Participation.objects.all()
     serializer_class = ParticipateResultsSerializer
 
 
 class TeamViewSet(ModelViewSet):
+    filter_fields = ['championship']
     permission_classes = [IsAuthenticated]
     queryset = Team.objects.all()
     serializer_class = TeamSerializer

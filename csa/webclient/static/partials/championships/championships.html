@@ -75,7 +75,7 @@
                             </thead>
                             <tbody ng-repeat="championship in championships">
                             <tr role="row">
-                                <td><a href="/#/championships/{{championship.id}}">{{ championship.name }}</a></td>
+                                <td><a href="/#/championships/details/{{championship.id}}">{{ championship.name }}</a></td>
                                 <td>{{ championship.groups }}</td>
                                 <td>{{ championship.home_and_away ? 'Yes' : 'No' }}</td>
                                 <td>{{ championship.players.length }}</td>

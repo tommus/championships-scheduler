@@ -84,6 +84,7 @@ class UserView(APIView):
 
 
 class UserViewSet(ModelViewSet):
+    filter_fields = ['championship']
     permission_classes = [IsAuthenticated]
     queryset = User.objects.all()
     serializer_class = serializers.UserSimpleSerializer
