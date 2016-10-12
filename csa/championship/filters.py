@@ -7,5 +7,5 @@ class MatchFilterSet(FilterSet):
     championship = NumberFilter(name='group__championship')
 
     class Meta:
-        model = Match
         fields = ['championship']
+        model = Match
