@@ -1,32 +1,33 @@
 'use strict';
 
 angular.module('csa')
-  .controller('ChampionshipsDetailsCtrl', function ($scope, $location, $q, $routeParams, $uibModal, $route, settings, Championships, Groups, Results, Matches, Participates, Teams, Accounts) {
+  .controller('ChampionshipsDetailsCtrl', function ($scope, $location, $q, $routeParams, $uibModal, $route, settings,
+                                                    Championships, Groups, Results, Matches, Participates, Teams, Accounts) {
 
     $scope.loadData = function () {
       $q.all([
         Championships.get($routeParams.id),
         Groups.query({championship: $routeParams.id}),
         Results.query({championship: $routeParams.id}),
-        Matches.query({group__championship: $routeParams.id}),
+        Matches.query({championship: $routeParams.id}),
         Participates.query({championship: $routeParams.id}),
         Teams.query({championship: $routeParams.id}),
         Accounts.query({championship: $routeParams.id})
       ]).then(function (data) {
         $scope.championships = data[0].data;
-        $scope.groups = data[1].data;
-        $scope.results = data[2].data;
-        $scope.matches = data[3].data;
-        $scope.participates = data[4].data;
-        $scope.teams = data[5].data;
-        $scope.players = data[6].data;
+        $scope.groups        = data[1].data;
+        $scope.results       = data[2].data;
+        $scope.matches       = data[3].data;
+        $scope.participates  = data[4].data;
+        $scope.teams         = data[5].data;
+        $scope.players       = data[6].data;
 
         sortGroupParticipatesByResults($scope.groups, $scope.results);
       });
     };
     $scope.loadData();
 
-    $scope.getById = getById;
+    $scope.getById       = getById;
     $scope.getPanelStyle = getPanelStyle;
     $scope.sanitizeScore = sanitizeScore;
 
@@ -45,9 +46,9 @@ angular.module('csa')
     $scope.showSetScore = function (match) {
       $uibModal.open({
         templateUrl: settings.STATIC_URL + '/partials/championships/dialogs/set-score.html',
-        animation: true,
-        controller: 'SetScoreCtrl',
-        resolve: {
+        animation:   true,
+        controller:  'SetScoreCtrl',
+        resolve:     {
           match: function () {
             return match;
           }

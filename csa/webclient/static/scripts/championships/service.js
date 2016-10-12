@@ -26,7 +26,7 @@ angular.module('csa')
   .service('Teams', function (settings, $http) {
     var ADDRESS = '/championship/teams/';
     return {
-      get:      function (data, parameters) {
+      get:   function (data, parameters) {
         parameters = typeof parameters !== 'undefined' ? parameters : {};
         return $http.get(settings.BASE_URL + ADDRESS + data + '/', {
           params: parameters
@@ -83,7 +83,7 @@ angular.module('csa')
           params: parameters
         });
       },
-      patch:  function (id, data) {
+      patch: function (id, data) {
         return $http.patch(settings.BASE_URL + ADDRESS + id + '/', data);
       }
     };

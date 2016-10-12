@@ -12,6 +12,7 @@ from rest_framework.viewsets import (
     ModelViewSet
 )
 
+from csa.championship.filters import MatchFilterSet
 from csa.championship.models import Championship, Group, Participation, Team, Match
 from csa.championship.serializers import (
     ChampionshipSerializer,
@@ -151,14 +152,14 @@ class GroupViewSet(ModelViewSet):
 
 
 class ParticipationViewSet(ModelViewSet):
-    filter_fields = ['id', 'championship']
+    filter_fields = ['championship']
     permission_classes = [IsAuthenticated]
     queryset = Participation.objects.all()
     serializer_class = ParticipationSerializer
 
 
 class ResultsViewSet(ModelViewSet):
-    filter_fields = ['id', 'championship']
+    filter_fields = ['championship']
     permission_classes = [IsAuthenticated]
     queryset = Participation.objects.all()
     serializer_class = ResultsSerializer
@@ -172,7 +173,7 @@ class TeamViewSet(ModelViewSet):
 
 
 class MatchViewSet(ModelViewSet):
-    filter_fields = ['group__championship']
+    filter_class = MatchFilterSet
     permission_classes = [IsAuthenticated]
     queryset = Match.objects.all()
     serializer_class = MatchSerializer
