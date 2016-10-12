@@ -35,7 +35,9 @@ angular.module('csa')
       var promises = [];
 
       $scope.matches.forEach(function (match) {
-        promises.push(Matches.patch(match.id, {host_team_goals: null, guest_team_goals: null}))
+        if(match.host_team_goals !== null || match.guest_team_goals !== null) {
+          promises.push(Matches.patch(match.id, {host_team_goals: null, guest_team_goals: null}))
+        }
       });
 
       $q.all(promises).then(function (response) {
