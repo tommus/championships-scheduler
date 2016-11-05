@@ -11,16 +11,19 @@ from csa.championship.models import Championship, Group, Participation, Team, Ma
 class ChampionshipSerializer(ModelSerializer):
     class Meta:
         model = Championship
+        fields = '__all__'
 
 
 class GroupSerializer(ModelSerializer):
     class Meta:
         model = Group
+        fields = '__all__'
 
 
 class ParticipationSerializer(ModelSerializer):
     class Meta:
         model = Participation
+        fields = '__all__'
 
 
 class ResultsSerializer(ModelSerializer):
@@ -30,6 +33,7 @@ class ResultsSerializer(ModelSerializer):
 
     class Meta:
         model = Participation
+        fields = '__all__'
 
     def get_team(self, obj):
         return str(obj.team.name)
@@ -91,8 +95,11 @@ class ResultsSerializer(ModelSerializer):
 class TeamSerializer(ModelSerializer):
     class Meta:
         model = Team
+        fields = '__all__'
 
 
 class MatchSerializer(ModelSerializer):
     class Meta:
         model = Match
+        fields = '__all__'
+

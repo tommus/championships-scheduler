@@ -15,7 +15,7 @@ SECRET_KEY = 'e4qylhzuhug2jd2)q)k%+xwgzs=&8o=(m7i8iycas_p5!2ry=)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*',]
 
 # Databases.
 DATABASES = {
