@@ -16,6 +16,7 @@ htmlcov/
 csa/webclient/static/bower_components
 photos/*
 static/*
+node_modules/*
 
 # virtualenv
 .venv/
