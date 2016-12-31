@@ -2,6 +2,7 @@ import itertools
 from string import ascii_uppercase
 
 import random
+from django.core import serializers
 from django.contrib.auth.models import User
 from rest_framework.mixins import CreateModelMixin
 from rest_framework.permissions import IsAuthenticated
@@ -52,7 +53,9 @@ class ScheduleChampionshipViewSet(CreateModelMixin, GenericViewSet):
         self._prepare_groups(championship, groups)
         self._prepare_matches(championship, home_away)
 
-        return Response(status=HTTP_200_OK)
+        serialized_championship = ChampionshipSerializer(championship)
+
+        return Response(data=serialized_championship.data, status=HTTP_200_OK)
 
     def _prepare_championship(self, name, groups, players, teams, home_away):
         championship = Championship(

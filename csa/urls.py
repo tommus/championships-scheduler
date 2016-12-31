@@ -2,7 +2,11 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from rest_framework import routers
 
-from csa.accounts.views import LoginView, LogoutView, UserViewSet
+from csa.accounts.views import (
+    LoginView,
+    LogoutView,
+    UserViewSet
+)
 from csa.championship.views import (
     ChampionshipViewSet,
     ScheduleChampionshipViewSet,

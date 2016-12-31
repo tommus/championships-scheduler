@@ -17,9 +17,12 @@ from csa.accounts import serializers
 class LoginView(APIView):
     permission_classes = [AllowAny]
     serializer_class = serializers.UserSerializer
+    error_messages = {
+        'inactive': _('This account is inactive.'),
+        'invalid_credentials': _('Login or password invalid.')
+    }
 
-    @staticmethod
-    def post(request):
+    def post(self, request):
         username = request.data.get('username')
         password = request.data.get('password')
         user = authenticate(username=username, password=password)
@@ -33,18 +36,27 @@ class LoginView(APIView):
                 return Response(serialized.data)
             else:
                 return Response(
-                    {'detail': _('This account is inactive.')},
+                    {
+                        'message': {
+                            'username': self.error_messages['inactive']
+                        }
+                    },
                     status=HTTP_401_UNAUTHORIZED
                 )
         else:
             return Response(
-                {'detail': _('Login or password invalid.')},
+                {
+                    'message': {
+                        'username': self.error_messages['invalid_credentials'],
+                        'password': self.error_messages['invalid_credentials']
+                    },
+                },
                 status=HTTP_401_UNAUTHORIZED
             )
 
 
 class LogoutView(APIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
     serializer_class = serializers.UserSerializer
 
     @staticmethod
@@ -56,6 +68,9 @@ class LogoutView(APIView):
 class UserView(APIView):
     permission_classes = [IsAuthenticated]
     serializer_class = serializers.UserSerializer
+    error_messages = {
+        'null_password': _('This field may not be null.')
+    }
 
     @staticmethod
     def get(request):
@@ -65,8 +80,7 @@ class UserView(APIView):
         )
         return Response(serialized.data)
 
-    @staticmethod
-    def put(request):
+    def put(self, request):
         password = request.data.get('password')
         if password:
             user = request.user
@@ -78,7 +92,11 @@ class UserView(APIView):
             )
             return Response(serialized.data)
         return Response(
-            {'password': _('This field may not be null.')},
+            {
+                'message': {
+                    'password': self.error_messages['null_password']
+                }
+            },
             status=HTTP_400_BAD_REQUEST
         )
 
