@@ -6,7 +6,7 @@ import {Match} from "../model/match";
 
 @Injectable()
 export class MatchesService {
-  private url: string = 'http://192.168.1.102:8000/api/championships/matches/';
+  private url: string = 'http://localhost:8000/api/championships/matches/';
   private headers = new Headers();
 
   constructor(private http: Http, profileService: ProfileService) {

@@ -6,7 +6,7 @@ import {ProfileService} from "./profile.service";
 
 @Injectable()
 export class LoginService {
-  private loginUrl: string = 'http://192.168.1.102:8000/api/login/';
+  private loginUrl: string = 'http://localhost:8000/api/login/';
 
   constructor(private http: Http,
               private profileService: ProfileService) {

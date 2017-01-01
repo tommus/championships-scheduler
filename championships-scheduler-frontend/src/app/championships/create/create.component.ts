@@ -43,7 +43,10 @@ export class CreateComponent implements OnInit, OnDestroy {
 
   onSubmit(): void {
     this.subscription.add(this.championshipsService.scheduleChampionship(this.request)
-      .subscribe(championship => this.router.navigate(['details', championship.id]), error => console.error(error)));
+      .subscribe(
+        championship => this.router.navigate(['/championships', 'details', championship.id]),
+        error => console.error(error)
+      ));
   }
 
   onReset(): void {

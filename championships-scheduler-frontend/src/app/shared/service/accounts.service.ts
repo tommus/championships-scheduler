@@ -6,7 +6,7 @@ import {User} from "../model/user";
 
 @Injectable()
 export class AccountsService {
-  private url: string = 'http://192.168.1.102:8000/api/accounts/users/';
+  private url: string = 'http://localhost:8000/api/accounts/users/';
   private headers = new Headers();
 
   constructor(private http: Http, profileService: ProfileService) {

@@ -6,8 +6,8 @@ import {ProfileService} from "./profile.service";
 
 @Injectable()
 export class ChampionshipsService {
-  private url: string = 'http://192.168.1.102:8000/api/championships/championships/';
-  private scheduleUrl: string = 'http://192.168.1.102:8000/api/championships/schedule/';
+  private url: string = 'http://localhost:8000/api/championships/championships/';
+  private scheduleUrl: string = 'http://localhost:8000/api/championships/schedule/';
   private headers = new Headers();
 
   constructor(private http: Http, profileService: ProfileService) {

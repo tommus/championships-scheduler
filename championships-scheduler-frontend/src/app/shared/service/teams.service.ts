@@ -6,7 +6,7 @@ import {Team} from "../model/team";
 
 @Injectable()
 export class TeamsService {
-  private url: string = 'http://192.168.1.102:8000/api/championships/teams/';
+  private url: string = 'http://localhost:8000/api/championships/teams/';
   private headers = new Headers();
 
   constructor(private http: Http, profileService: ProfileService) {

@@ -6,7 +6,7 @@ import {Participate} from "../model/participate";
 
 @Injectable()
 export class ParticipatesService {
-  private url: string = 'http://192.168.1.102:8000/api/championships/participates/';
+  private url: string = 'http://localhost:8000/api/championships/participates/';
   private headers = new Headers();
 
   constructor(private http: Http, profileService: ProfileService) {

@@ -6,7 +6,7 @@ import {Group} from "../model/group";
 
 @Injectable()
 export class GroupsService {
-  private url: string = 'http://192.168.1.102:8000/api/championships/groups/';
+  private url: string = 'http://localhost:8000/api/championships/groups/';
   private headers = new Headers();
 
   constructor(private http: Http, profileService: ProfileService) {

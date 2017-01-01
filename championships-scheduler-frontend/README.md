@@ -7,6 +7,10 @@ Web application for Championships Scheduler.
 1. Install NPM dependencies:
 
     > npm install
+    
+2. Build application:
+
+    > ng build
 
 ## Running server
 
