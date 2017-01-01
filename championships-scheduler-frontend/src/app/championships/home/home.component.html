@@ -1,0 +1,82 @@
+<div class="container-fluid">
+  <!-- Header. -->
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+      <h1 class="page-header">Championships</h1>
+    </div>
+  </div>
+  <!-- List. -->
+  <div class="card">
+    <!-- Header. -->
+    <div class="card-header">
+      <h4>Most recent championships</h4>
+      <p>
+        On this page you can find most recent championships. Or start new ones.
+      </p>
+    </div>
+    <!-- Block. -->
+    <div class="card-block">
+      <!-- Controls. -->
+      <div class="row form-inline">
+        <!-- Dropdown. -->
+        <div class="col-sm-6 col-md-6 col-lg-6">
+          <label style="font-weight: normal !important;">
+            Show
+            <select name="selectedCount" class="form-control form-control-sm" [(ngModel)]="showCount">
+              <option *ngFor="let count of showCountOptions" [value]="count">{{count}}</option>
+            </select>
+            championships
+          </label>
+        </div>
+        <!-- Search field. -->
+        <div class="col-sm-6 col-md-6 col-lg-6">
+          <label style="font-weight: normal !important;" class="pull-right">
+            Search:
+            <input type="search" class="form-control form-control-sm" [(ngModel)]="filterName">
+          </label>
+        </div>
+      </div>
+      <!-- Table. -->
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+          <table class="table table-bordered table-hover">
+            <!-- Header. -->
+            <thead>
+            <tr role="row">
+              <th>Name</th>
+              <th>Groups</th>
+              <th>Two-legged tie</th>
+              <th>Participants</th>
+              <th>Teams</th>
+            </tr>
+            </thead>
+            <tbody *ngFor="let championship of championships | slice:0:showCount | name:filterName">
+            <tr role="row">
+              <td><a [routerLink]="['/championships/details/', championship.id]">{{championship.name}}</a></td>
+              <td>{{championship.groups}}</td>
+              <td>{{championship.home_and_away ? 'Yes' : 'No'}}</td>
+              <td>{{championship.players.length}}</td>
+              <td>{{championship.teams.length}}</td>
+            </tr>
+            </tbody>
+            <tbody *ngIf="(championships | slice:0:showCount | name:filterName).length <= 0">
+            <tr>
+              <td colspan="5" class="text-sm-center text-md-center text-lg-center">No results available.</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- Button. -->
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+          <button type="button" class="btn btn-primary btn-lg btn-block" [routerLink]="['create']">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            <b class="caret"></b>
+            Create championships
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

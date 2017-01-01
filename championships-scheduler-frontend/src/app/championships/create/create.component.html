@@ -1,0 +1,79 @@
+<div class="container-fluid">
+  <!-- Header. -->
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+      <h1 class="page-header">New championships</h1>
+    </div>
+  </div>
+  <!-- Form. -->
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+      <form>
+        <!-- Name. -->
+        <div class="form-group row">
+          <label for="name" class="col-sm-2 col-md-2 col-lg-2 col-form-label text-sm-left text-md-right text-lg-right">Name</label>
+          <div class="col-sm-10 col-md-10 col-lg-10">
+            <input [(ngModel)]="request.name" type="text" class="form-control" id="name" name="name" placeholder="Name"
+                   required>
+          </div>
+        </div>
+        <!-- Groups. -->
+        <div class="form-group row">
+          <label for="groups" class="col-sm-2 col-md-2 col-lg-2 col-form-label text-sm-left text-md-right text-lg-right">Groups</label>
+          <div class="col-sm-10 col-md-10 col-lg-10">
+            <select [(ngModel)]="request.groups" class="form-control" id="groups" name="groups">
+              <option *ngFor="let option of groupOptions" [value]="option">{{option}}</option>
+            </select>
+          </div>
+        </div>
+        <!-- Players. -->
+        <div class="form-group row">
+          <label for="players" class="col-sm-2 col-md-2 col-lg-2 col-form-label text-sm-left text-md-right text-lg-right">Players</label>
+          <div class="col-sm-10 col-md-10 col-lg-10">
+            <select [(ngModel)]="request.players" id="players" class="form-control" name="players" multiple>
+              <option *ngFor="let player of players" [value]="player">{{player.username}}</option>
+            </select>
+          </div>
+        </div>
+        <!-- Teams. -->
+        <div class="form-group row">
+          <label for="teams" class="col-sm-2 col-md-2 col-lg-2 col-form-label text-sm-left text-md-right text-lg-right">Teams</label>
+          <div class="col-sm-10 col-md-10 col-lg-10">
+            <select [(ngModel)]="request.teams" id="teams" class="form-control" name="teams" multiple>
+              <option *ngFor="let team of teams" [value]="team">{{team.name}}</option>
+            </select>
+          </div>
+        </div>
+        <!-- Home and away. -->
+        <div class="form-group row">
+          <label class="col-sm-2 col-md-2 col-lg-2 col-form-label text-sm-left text-md-right text-lg-right">Game type</label>
+          <div class="col-sm-10 col-md-10 col-lg-10">
+            <div class="row">
+              <div class="col-sm-12 col-md-12 col-lg-12">
+                <label for="home_and_away_single" style="font-weight: normal">
+                  <input [(ngModel)]="request.home_away" [value]="false" id="home_and_away_single" type="radio"
+                         name="home_and_away_single" [checked]="!request.home_away">
+                  Single game only
+                </label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12 col-md-12 col-lg-12">
+                <label for="home_and_away_both" style="font-weight: normal">
+                  <input [(ngModel)]="request.home_away" [value]="true" id="home_and_away_both" type="radio"
+                         name="home_and_away_both" [checked]="request.home_away">
+                  Home and away
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Buttons. -->
+        <div class="form-group pull-right">
+          <button class="btn btn-link" (click)="onReset()">Reset</button>
+          <button type="submit" class="btn btn-primary" (click)="onSubmit()">Generate</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

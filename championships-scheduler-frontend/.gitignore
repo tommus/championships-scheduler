@@ -1,0 +1,22 @@
+# Compiled output.
+/dist
+/tmp
+
+# Dependencies.
+/node_modules
+
+# IDE.
+/.idea
+
+# Misc.
+/.sass-cache
+/connect.lock
+/coverage/*
+/libpeerconnection.log
+npm-debug.log
+testem.log
+/typings
+
+# E2e.
+/e2e/*.js
+/e2e/*.map

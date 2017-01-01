@@ -1,0 +1,19 @@
+# IDE.
+.idea/
+tmp/
+!tmp/.keep
+
+# Coverage results.
+.coverage
+htmlcov/
+
+# Python cache.
+*.py[oc]
+__pycache__/
+
+# Python virtual environment.
+.venv/
+venv/
+
+# I18N % L10N.
+*.mo

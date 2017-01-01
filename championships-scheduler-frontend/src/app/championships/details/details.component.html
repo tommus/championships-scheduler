@@ -1,0 +1,141 @@
+<div class="container-fluid">
+  <!-- Modal. -->
+  <match-modal></match-modal>
+  <!-- Header. -->
+  <div class="row" *ngIf="championships">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+      <h1 class="page-header">Championships - {{championships.name}}</h1>
+    </div>
+  </div>
+  <!-- Standings. -->
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+      <div class="page-header">
+        <h4>Standings</h4>
+      </div>
+      <!-- Tabs. -->
+      <ul class="nav nav-tabs">
+        <li class="nav-item" *ngFor="let group of groups">
+          <!-- TODO: Tab changes. -->
+          <a class="nav-link active" href="javascript:;">Group {{group.name}}</a>
+        </li>
+      </ul>
+      <!-- Content. -->
+      <div class="tab-content" *ngFor="let group of groups">
+        <div role="tabpanel" class="tab-pane fade in active" id="{{group-name}}">
+          <table class="table table-hover">
+            <!-- Table header. -->
+            <thead>
+            <tr>
+              <th>No.</th>
+              <th>Team</th>
+              <th>Player</th>
+              <th>Played</th>
+              <th>Won</th>
+              <th>Drawn</th>
+              <th>Lost</th>
+              <th>Goals scored</th>
+              <th>Goals lost</th>
+              <th>Goals balance</th>
+              <th>Points</th>
+            </tr>
+            </thead>
+            <!-- Table body. -->
+            <tbody>
+            <!-- TODO: Repeat. -->
+            <tr *ngFor="let participate of group.participates; let i = index">
+              <td>{{i+1}}</td>
+              <td>{{getById(results, participate).team}}</td>
+              <td>{{getById(results, participate).player}}</td>
+              <td>{{getById(results, participate).results.games_played}}</td>
+              <td>{{getById(results, participate).results.games_won}}</td>
+              <td>{{getById(results, participate).results.games_drawn}}</td>
+              <td>{{getById(results, participate).results.games_lost}}</td>
+              <td>{{getById(results, participate).results.goals_scored}}</td>
+              <td>{{getById(results, participate).results.goals_lost}}</td>
+              <td>{{getById(results, participate).results.goals_balance}}</td>
+              <td>{{getById(results, participate).results.points}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Matches. -->
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+      <!-- Header. -->
+      <div class="page-header">
+        <h4>Matches</h4>
+      </div>
+      <!-- List. -->
+      <div class="card">
+        <div class="card-block">
+          <div class="row" *ngFor="let match of matches">
+            <!-- Host team. -->
+            <div class="col-sm-6 col-md-6 col-lg-6">
+              <div [class]="getCardStyle(match, true)">
+                <div class="card-header">
+                  <div class="row">
+                    <div class="col-sm-1 col-md-1 col-lg-1">
+                      <i class="fa fa-trophy fa-3x"></i>
+                    </div>
+                    <div class="col-ms-9 col-md-9 col-lg-9 text-sm-center text-md-center text-lg-center">
+                      <div class="row">
+                        <div class="col-ms-12 col-md-12 col-lg-12">
+                          <div style="font-size: 32px; color: rgba(0, 0, 0, 0.5)">
+                            {{getById(teams, getById(participates, match.host_team).team).name}}
+                          </div>
+                          <div class="small">
+                            {{getById(players, getById(participates, match.host_team).player).username}}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-2 col-md-2 col-lg-2 text-sm-right text-md-right text-lg-right">
+                      <button class="btn btn-default huge" style="color: rgba(0,0,0,0.5); min-width: 70px;"
+                              (click)="showSetScore(match)">
+                        {{sanitizeScore(match.host_team_goals)}}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Guest team. -->
+            <div class="col-sm-6 col-md-6 col-lg-6">
+              <div [class]="getCardStyle(match, false)">
+                <div class="card-header">
+                  <div class="row">
+                    <div class="col-sm-2 col-md-2 col-lg-2 text-sm-left text-md-left text-lg-left">
+                      <button class="btn btn-default huge" style="color: rgba(0,0,0,0.5); min-width: 70px;"
+                              (click)="showSetScore(match)">
+                        {{sanitizeScore(match.guest_team_goals)}}
+                      </button>
+                    </div>
+                    <div class="col-ms-9 col-md-9 col-lg-9 text-sm-center text-md-center text-lg-center">
+                      <div class="row">
+                        <div class="col-ms-12 col-md-12 col-lg-12">
+                          <div style="font-size: 32px; color: rgba(0, 0, 0, 0.5)">
+                            {{getById(teams, getById(participates, match.guest_team).team).name}}
+                          </div>
+                          <div class="small">
+                            {{getById(players, getById(participates, match.guest_team).player).username}}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-1 col-md-1 col-lg-1">
+                      <i class="fa fa-trophy fa-3x"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

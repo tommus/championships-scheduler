@@ -1,0 +1,33 @@
+$cardGreen: #5cb85c;
+$cardRed: #d9534f;
+$cardBlue: #337ab7;
+
+@mixin card-colored($color) {
+  border-color: $color;
+  a {
+    color: $color;
+  }
+  .card-header {
+    border-color: $color;
+    background-color: $color;
+    color: white;
+  }
+  .card-block {
+    background-color: #f5f5f5;
+  }
+  .huge {
+    font-size: 40px;
+  }
+}
+
+.card-green {
+  @include card-colored($cardGreen);
+}
+
+.card-red {
+  @include card-colored($cardRed);
+}
+
+.card-blue {
+  @include card-colored($cardBlue);
+}

@@ -1,0 +1,37 @@
+<div class="modal fade" tabindex="-1"
+     [ngStyle]="{'display': visible ? 'block' : 'none', 'opacity' : visibleAnimate ? 1 : 0}"
+     [ngClass]="{'in': visibleAnimate}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <!-- Header. -->
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Define match score</h4>
+      </div>
+      <!-- Body. -->
+      <div class="modal-body">
+        <form>
+          <!-- Host. -->
+          <div class="form-group" *ngIf="hostTeam && hostPlayer">
+            <label for="host-goals">{{hostTeam.name}} ({{hostPlayer.username}})</label>
+            <input type="number" class="form-control" id="host-goals" placeholder="0"
+                   [(ngModel)]="match.host_team_goals" name="host-goals">
+          </div>
+          <!-- Guest. -->
+          <div class="form-group" *ngIf="guestTeam && guestPlayer">
+            <label for="guest-goals">{{guestTeam.name}} ({{guestPlayer.username}})</label>
+            <input type="number" class="form-control" id="guest-goals" placeholder="0"
+                   [(ngModel)]="match.guest_team_goals" name="guest-goals">
+          </div>
+        </form>
+      </div>
+      <!-- Footer. -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="submit()">Submit</button>
+        <button type="button" class="btn btn-link" (click)="hide()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
