@@ -15,6 +15,7 @@ Some fancy technologies which was used to create the Championships Scheduler:
 3. [**django-cors-headers**](https://github.com/ottoyiu/django-cors-headers) by Otto Yiu
 4. [**Angular 2**](https://github.com/angular/angular) by Google
 5. [**TypeScript**](https://github.com/Microsoft/TypeScript) by Microsoft
+6. [**Bootstrap 4**](https://github.com/twbs/bootstrap/tree/v4-dev) by Bootstrap Authors and Twitter, Inc.
 
 Along with [**Sass**](https://github.com/sass/sass), [**Karma**](https://github.com/karma-runner/karma), [**Protractor**](https://github.com/angular/protractor) and [**RxJS**](https://github.com/Reactive-Extensions/RxJS).
 
