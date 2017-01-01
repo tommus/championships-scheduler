@@ -25,3 +25,45 @@ Read more at [**Backend readme**](/championships-scheduler-backend/README.md)
 ## Frontend management
 
 Read more at [**Frontend readme**](/championships-scheduler-frontend/README.md)
+
+## Screenshots
+
+1. Backend - Administration login page:
+
+	![ScreenShot](https://raw.githubusercontent.com/tommus/championships-scheduler/master/screenshots/admin_login.png)
+
+2. Backend - Administration website:
+
+	![ScreenShot](https://raw.githubusercontent.com/tommus/championships-scheduler/master/screenshots/administration.png)
+
+3. Backend - API browser:
+
+	![ScreenShot](https://raw.githubusercontent.com/tommus/championships-scheduler/master/screenshots/api_presenter.png)
+
+4. Frontend - User login page:
+
+	![ScreenShot](https://raw.githubusercontent.com/tommus/championships-scheduler/master/screenshots/user_login.png)
+
+5. Frontend - Dashboard:
+
+	![ScreenShot](https://raw.githubusercontent.com/tommus/championships-scheduler/master/screenshots/dashboard.png)
+
+6. Frontend - Championships browser:
+
+	![ScreenShot](https://raw.githubusercontent.com/tommus/championships-scheduler/master/screenshots/championships.png)
+
+7. Frontend - Championships creator:
+
+	![ScreenShot](https://raw.githubusercontent.com/tommus/championships-scheduler/master/screenshots/create_championships.png)
+
+8. Frontend - Standings:
+
+	![ScreenShot](https://raw.githubusercontent.com/tommus/championships-scheduler/master/screenshots/standings.png)
+
+9. Frontend - Scheduler:
+
+	![ScreenShot](https://raw.githubusercontent.com/tommus/championships-scheduler/master/screenshots/schedule.png)
+
+10. Frontend - Score definition wizard:
+
+	![ScreenShot](https://raw.githubusercontent.com/tommus/championships-scheduler/master/screenshots/define_score.png)
