@@ -25,4 +25,3 @@ Read more at [**Backend readme**](/championships-scheduler-backend/README.md)
 ## Frontend management
 
 Read more at [**Frontend readme**](/championships-scheduler-frontend/README.md)
-
